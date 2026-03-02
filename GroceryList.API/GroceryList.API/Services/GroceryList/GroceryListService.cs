@@ -6,15 +6,17 @@ namespace GroceryList.API.Services.GroceryList;
 
 public class GroceryListService(ILogger<GroceryListService> logger, DatabaseContext db) : IGroceryListService
 {
-    public async Task AddGroceryList(GroceryListRequestModel requestModel)
+    public async Task AddGroceryList(GroceryListModel requestModel)
     {
-        var groceryItem = new Data.Models.GroceryItem();
-        groceryItem.Name = requestModel.Name;
+        var groceryItem = new Data.Models.GroceryItem
+        {
+            Name = requestModel.Name
+        };
         db.GroceryItems.Add(groceryItem);
         await db.SaveChangesAsync();
     }
 
-    public async Task DeleteGroceryList(GroceryListRequestModel requestModel)
+    public async Task DeleteGroceryList(GroceryListModel requestModel)
     {
         var groceryItem = db.GroceryItems.FirstOrDefault(x => x.Id == requestModel.Id);
 
@@ -28,7 +30,7 @@ public class GroceryListService(ILogger<GroceryListService> logger, DatabaseCont
         await db.SaveChangesAsync();
     }
 
-    public async Task EditGroceryList(GroceryListRequestModel requestModel)
+    public async Task EditGroceryList(GroceryListModel requestModel)
     {
         var groceryItem = db.GroceryItems.FirstOrDefault(x => x.Id == requestModel.Id);
 
@@ -42,11 +44,11 @@ public class GroceryListService(ILogger<GroceryListService> logger, DatabaseCont
         await db.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<GroceryListResponseModel>> GetGroceryList()
+    public async Task<IEnumerable<GroceryListModel>> GetGroceryList()
     {
         logger.LogInformation("Getting grocery list from Database");
 
-        return await db.GroceryItems.Select(x => new GroceryListResponseModel
+        return await db.GroceryItems.Select(x => new GroceryListModel
         {
             Id = x.Id,
             Name = x.Name

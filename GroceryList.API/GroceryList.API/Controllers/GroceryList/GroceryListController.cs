@@ -16,21 +16,21 @@ namespace GroceryList.API.Controllers.GroceryList
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] GroceryListRequestModel requestModel)
+        public async Task<IActionResult> Post([FromBody] GroceryListModel requestModel)
         {
             await groceryListService.AddGroceryList(requestModel);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] GroceryListRequestModel requestModel)
+        public async Task<IActionResult> Put([FromBody] GroceryListModel requestModel)
         {
             await groceryListService.EditGroceryList(requestModel);
             return Ok();
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] GroceryListRequestModel requestModel)
+        public async Task<IActionResult> Delete([FromBody] GroceryListModel requestModel)
         {
             await groceryListService.DeleteGroceryList(requestModel);
             return Ok();

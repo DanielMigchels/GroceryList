@@ -4,8 +4,8 @@ namespace GroceryList.API.Services.GroceryList;
 
 public interface IGroceryListService
 {
-    public Task AddGroceryList(GroceryListRequestModel requestModel);
-    public Task DeleteGroceryList(GroceryListRequestModel requestModel);
-    public Task EditGroceryList(GroceryListRequestModel requestModel);
-    public Task<IEnumerable<GroceryListResponseModel>> GetGroceryList();
+    public Task AddGroceryList(GroceryListModel requestModel);
+    public Task DeleteGroceryList(GroceryListModel requestModel);
+    public Task EditGroceryList(GroceryListModel requestModel);
+    public Task<IEnumerable<GroceryListModel>> GetGroceryList();
 }
