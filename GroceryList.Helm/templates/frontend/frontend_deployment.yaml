@@ -1,4 +1,4 @@
-frontendVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grocerylist-frontend-deployment
@@ -19,6 +19,3 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          envFrom:
-            - secretRef:
-                name: grocerylist-frontend-secret
