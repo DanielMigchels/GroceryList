@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grocerylist-api-deployment
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grocerylist-api-deployment
+  template:
+    metadata:
+      labels:
+        app: grocerylist-api-deployment
+    spec:
+      containers:
+        - name: grocerylist-api
+          image: 'danielmigchels/grocerylist-api:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: grocerylist-api-secret

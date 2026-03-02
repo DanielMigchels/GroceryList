@@ -1,0 +1,24 @@
+frontendVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grocerylist-frontend-deployment
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grocerylist-frontend-deployment
+  template:
+    metadata:
+      labels:
+        app: grocerylist-frontend-deployment
+    spec:
+      containers:
+        - name: grocerylist-frontend
+          image: 'danielmigchels/grocerylist-frontend:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: grocerylist-frontend-secret
