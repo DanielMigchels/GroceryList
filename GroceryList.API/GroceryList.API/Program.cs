@@ -24,7 +24,7 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(buil
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "GitMirror.API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "GroceryList.API", Version = "v1" });
 });
 
 var app = builder.Build();
